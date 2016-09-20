@@ -3,7 +3,9 @@ body, html{
 }
 body{
   margin: 0px;
-  background-color:#444;
+  background-image: url('./src/image/dance_floor.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
@@ -20,8 +22,57 @@ body, a:link, a:visited, a:active{
 .title{
   background-color: #777;
 }
+
 .dancer{
-  border:10px solid red;
-  border-radius:10px;
   position:absolute;
+  -moz-transition: transform 1s;
+  -webkit-transition: transform 1s;
+  transition: transform 1s;
+}
+
+.dancer-image {
+  width:50px;
+  height:50px;
+}
+
+.bounceUp {
+  transition: all 0.5s ease;
+  transform:translateY(50px);
+}
+
+.bounceDown {
+  transition: all 0.5s ease;
+  transform:translateY(-50px);
+}
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate3d(1,1,1,0deg);
+    -moz-transform: rotate3d(1,1,1,0deg);
+    -webkit-transform: rotate3d(1,1,1,0deg);
+    -o-transform: rotate3d(1,1,1,0deg);
+    transform: rotate3d(1,1,1,0deg);
+  }
+  to {
+    -ms-transform: rotate3d(1,1,1,360deg);
+    -moz-transform: rotate3d(1,1,1,360deg);
+    -webkit-transform: rotate3d(1,1,1,360deg);
+    -o-transform: rotate3d(1,1,1,360deg);
+    transform: rotate3d(1,1,1,360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 1s linear infinite;
+  -moz-animation: rotating 1s linear infinite;
+  -ms-animation: rotating 1s linear infinite;
+  -o-animation: rotating 1s linear infinite;
+  animation: rotating 1s linear infinite;
+}
+
+img.resize {
+  transition: all 0.5s ease;
+  width: 250px;
+  height: 250px;
+  top: 40% !important;
+  left: 40% !important;
 }
