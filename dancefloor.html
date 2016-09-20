@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="lib/jquery.js"></script>
     <script src="src/dancer.js"></script>
+    <script src="src/controlDancer.js"></script>
     <script src="src/blinkyDancer.js"></script>
     <script src="src/phantomDancer.js"></script>
     <script src="src/bounceDancer.js"></script>
@@ -13,8 +14,15 @@
     <div class="topbar">
       <span class="title">object dance party</span>
       <button class="lineUpButton">Line Up!!</button>
+      <span class="divider"></span>
       <button class="switchButton">Switch!!</button>
+      <span class="divider"></span>
       <button class="randomizeButton">Randomize</button>
+      <span class="divider"></span>
+      <button class="formationButton">Formation</button>
+      <span class="divider"></span>
+      <button class="populateButton">LET'S PARTY!!!!</button>
+        <input class="populationValue" type="text" placeholder="# dancers"></input>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BlinkyDancer">add a blinky dancer</a>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="PhantomDancer">add a phantom dancer</a>   
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BounceDancer">add a bouncy dancer</a>

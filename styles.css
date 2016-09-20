@@ -76,3 +76,8 @@ img.resize {
   top: 40% !important;
   left: 40% !important;
 }
+
+.divider {
+  border-right: 2px solid lightblue;
+  margin: 10px;
+}

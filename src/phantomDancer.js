@@ -12,15 +12,15 @@ PhantomDancer.prototype = Object.create(Dancer.prototype);
 PhantomDancer.prototype.step = function() {
   Dancer.prototype.step.apply(this);
   //console.log(this);
-  PhantomEffect(this.$node);
+  PhantomEffect(this.$node, this.timeBetweenSteps);
 };
 
-var PhantomEffect = function(dancer) {
+var PhantomEffect = function(dancer, timeBetweenSteps) {
   if (!dancer.fade) {
-    dancer.fadeIn();
+    dancer.fadeIn(timeBetweenSteps);
     dancer.fade = true;
   } else {
-    dancer.fadeOut();
+    dancer.fadeOut(timeBetweenSteps);
     dancer.fade = false;
   }
 };
