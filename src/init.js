@@ -23,6 +23,21 @@ $(document).ready(function() {
 
   });
 
+  $('.randomizeButton').click(function() {
+    
+    $('.rotating').removeClass('resize');
+    $('.rotating').removeClass('rotating');
+
+    dancers.forEach(function(dancer, i) {
+      var styleSettings = {
+        top: $("body").height() * Math.random(),
+        left: $("body").width() * Math.random()
+      };
+
+      dancer.$node.css(styleSettings);
+    });
+  });
+
   var lineUpFunction = function(dancers, option, cb) {
     dancers.forEach(function(dancer, i){
 
@@ -41,19 +56,6 @@ $(document).ready(function() {
     });
     cb();
   };
-
-  $('.rotateButton').on('click', function(event) {
-    dancers.forEach(function(dancer, i ) {
-      var rotateSettings = {
-        '-webkit-animation': 'rotate 20s infinite linear',
-        '-moz-animation': 'rotate 20s infinite linear',
-        '-ms-animation': 'rotate 20s infinite linear',
-        '-o-animation': 'rotate 20s infinite linear',
-        'animation': 'rotate 20s infinite linear'
-      };
-      dancer.$node.css(rotateSettings);
-    });
-  });
 
   $('body').delegate("img", "mouseover", function() {
     var audio = new Audio('./src/Audio/ItsMeMario.mp3');
