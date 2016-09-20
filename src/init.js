@@ -25,7 +25,7 @@ $(document).ready(function() {
 
   var lineUpFunction = function(dancers, option, cb) {
     dancers.forEach(function(dancer, i){
-      
+
       if (i % 2 === option) {
         var styleSettings = {
           transition: 'all 0.5s ease',
@@ -49,14 +49,14 @@ $(document).ready(function() {
         '-moz-animation': 'rotate 20s infinite linear',
         '-ms-animation': 'rotate 20s infinite linear',
         '-o-animation': 'rotate 20s infinite linear',
-        'animation': 'rotate 20s infinite linear' 
+        'animation': 'rotate 20s infinite linear'
       };
       dancer.$node.css(rotateSettings);
     });
   });
 
   $('body').delegate("img", "mouseover", function() {
-    var audio = new Audio('./Audio/ItMeMario.mp3');
+    var audio = new Audio('./src/Audio/ItsMeMario.mp3');
     audio.play();
     $(this).attr('src', './src/image/papermario.gif');
   });
@@ -91,10 +91,9 @@ $(document).ready(function() {
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
-    
+
     dancers.push(dancer);
 
     $('body').append(dancer.$node);
   });
 });
-
