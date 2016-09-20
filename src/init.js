@@ -1,14 +1,23 @@
 $(document).ready(function() {
   window.dancers = [];
+  var duelDancers = [];
 
   $('.lineUpButton').on('click', function(event){
     var totalDancer = dancers.length;
     lineUpFunction(dancers, 0);
+    $('.rotating').removeClass("rotating");
   });
 
   $('.switchButton').on('click', function(event){
     var totalDancer = dancers.length;
     lineUpFunction(dancers, 1);
+  });
+
+  $('body').delegate("img", "click", function() {
+    console.log("this: " + this);
+    $(this).removeClass("rotating");
+    $(this).addClass("rotating");
+    $(this).addClass("resize");
   });
 
   var lineUpFunction = function(dancers, option) {

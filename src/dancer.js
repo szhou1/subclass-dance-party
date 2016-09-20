@@ -13,6 +13,8 @@ var Dancer = function(top, left, timeBetweenSteps) {
   this.setPosition(top, left);
 
   this.setColor(this.shapes[rand]);
+
+  this.stopAnimation = true;
 };
 
 Dancer.prototype.step = function() {
