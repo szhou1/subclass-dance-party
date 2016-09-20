@@ -14,13 +14,16 @@ $(document).ready(function() {
   });
 
   $('body').delegate("img", "click", function() {
-    console.log("this: " + this);
-    $(this).removeClass("rotating");
-    $(this).addClass("rotating");
-    $(this).addClass("resize");
+    var $that = $(this);
+    lineUpFunction(dancers, 0, function() {
+      $that.removeClass("rotating");
+      $that.addClass("rotating");
+      $that.addClass("resize");
+    });
+
   });
 
-  var lineUpFunction = function(dancers, option) {
+  var lineUpFunction = function(dancers, option, cb) {
     dancers.forEach(function(dancer, i){
       
       if (i % 2 === option) {
@@ -36,6 +39,7 @@ $(document).ready(function() {
       }
       dancer.$node.css(styleSettings);
     });
+    cb();
   };
 
   $('.rotateButton').on('click', function(event) {
@@ -52,6 +56,8 @@ $(document).ready(function() {
   });
 
   $('body').delegate("img", "mouseover", function() {
+    var audio = new Audio('./Audio/ItMeMario.mp3');
+    audio.play();
     $(this).attr('src', './src/image/papermario.gif');
   });
 
