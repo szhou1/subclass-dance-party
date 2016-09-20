@@ -20,8 +20,7 @@ var bounce = function(dancer) {
     dancer.removeClass('bounceDown');
     dancer.addClass('bounceUp');
     dancer.bounce = true;
-  }
-  else {
+  } else {
     dancer.removeClass('bounceUp');
     dancer.addClass('bounceDown');
     dancer.bounce = false;

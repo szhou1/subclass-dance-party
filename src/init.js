@@ -42,6 +42,14 @@ $(document).ready(function() {
     });
   });
 
+  $('body').delegate("img", "mouseover", function() {
+    $(this).attr('src', './src/image/papermario.gif');
+  });
+
+  $('body').delegate("img", "mouseleave", function() {
+    $(this).attr('src', './src/image/michael_jackson.gif');
+  });
+
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.

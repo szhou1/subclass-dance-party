@@ -19,8 +19,7 @@ var PhantomEffect = function(dancer) {
   if (!dancer.fade) {
     dancer.fadeIn();
     dancer.fade = true;
-  }
-  else {
+  } else {
     dancer.fadeOut();
     dancer.fade = false;
   }

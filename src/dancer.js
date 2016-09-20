@@ -5,7 +5,7 @@ var Dancer = function(top, left, timeBetweenSteps) {
   // use jQuery to create an HTML <span> tag
   this.shapes = ['square', 'circle', 'triangle'];
   var rand = Math.floor(Math.random() * this.shapes.length);
-  this.$node = $('<span class="dancer ' + this.shapes[rand] + '"></span>');
+  this.$node = $('<image class="dancer dancer-image" src="./src/image/michael_jackson.gif">');
 
   this.step();
   // now that we have defined the dancer object, we can start setting up important parts of it by calling the methods we wrote
@@ -38,11 +38,11 @@ Dancer.prototype.setColor = function(shape) {
   }
 
   var colorSettings;
-  if (shape === 'triangle') {
-    colorSettings = {'border-top': '20px solid ' + color};
-  } else {
-    colorSettings = {border: '10px solid ' + color};
-  }
-  
+  // if (shape === 'triangle') {
+  //   colorSettings = {'border-top': '20px solid ' + color};
+  // } else {
+  //   colorSettings = {border: '10px solid ' + color};
+  // }
+  colorSettings = {border: '3px solid ' + color};
   this.$node.css(colorSettings);
 };
