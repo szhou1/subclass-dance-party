@@ -12,7 +12,9 @@ BounceDancer.prototype = Object.create(Dancer.prototype);
 BounceDancer.prototype.step = function() {
   Dancer.prototype.step.apply(this);
   //console.log(this);
-  bounce(this.$node);
+  if (!this.stopAnimation) {
+    bounce(this.$node);
+  }
 };
 
 var bounce = function(dancer) {

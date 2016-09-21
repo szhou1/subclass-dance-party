@@ -12,6 +12,8 @@ BlinkyDancer.prototype = Object.create(Dancer.prototype);
 BlinkyDancer.prototype.step = function() {
   Dancer.prototype.step.apply(this);
   //console.log(this);
-  this.$node.toggle();
+  if (!this.stopAnimation) {
+    this.$node.toggle();
+  }
 };
 

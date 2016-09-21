@@ -14,14 +14,17 @@ var Dancer = function(top, left, timeBetweenSteps) {
 
   this.setColor(this.shapes[rand]);
 
-  this.stopAnimation = true;
+  this.stopAnimation = false;
 };
 
 Dancer.prototype.step = function() {
-  var context = this;
-  setTimeout(function() {
-    context.step();
-  }, context.timeBetweenSteps);
+  // var context = this;
+  // setTimeout(function() {
+  //   context.step();
+  // }, context.timeBetweenSteps);
+  setTimeout(() => {
+    this.step();
+  }, this.timeBetweenSteps);
 };
 
 Dancer.prototype.setPosition = function(top, left) {

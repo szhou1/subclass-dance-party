@@ -1,10 +1,17 @@
 $(document).ready(function() {
   window.dancers = [];
   var duelDancers = [];
-  var formationsList = ["leftDiagonal","rightDiagonal"];
+  var formationsList = ["leftDiagonal","rightDiagonal","circle"];
   var formationCounter = 0;
 
-  $('.lineUpButton').on('click', function(event){
+  $('.resetButton').click(function() {
+    dancers.forEach(function(dancer) {
+      dancer.$node.remove();
+    });
+    dancers = [];
+  });
+
+  $('.lineUpButton').on('click', (event) => {
     var totalDancer = dancers.length;
     lineUpFunction(dancers, 0);
     $('.rotating').removeClass("rotating");
@@ -26,7 +33,7 @@ $(document).ready(function() {
   });
 
   $('.randomizeButton').click(function() {
-    
+    turnOffOnAnimation("on");
     $('.rotating').removeClass('resize');
     $('.rotating').removeClass('rotating');
 
@@ -63,7 +70,7 @@ $(document).ready(function() {
   $('.formationButton').click(function() {
     $('.rotating').removeClass('resize');
     $('.rotating').removeClass('rotating');
-
+    turnOffOnAnimation("off");
     var numDancers = dancers.length;
     var heightChange = ($("body").height() - 32) / numDancers;
     var widthChange = $("body").width() / numDancers;
@@ -73,17 +80,18 @@ $(document).ready(function() {
     } else if ("rightDiagonal" === formationsList[formationCounter]) {
       var leftValue = 0;
       var topValue = $("body").height();
-    } else if ("diamond" === formationsList[formationCounter]) {
-      var q1 = [0, ($("body").height()/2)];
-      var q2 = [($("body").width()/2), 0];
-      var q3 = [0, ($("body").height()/2)];
-      var q4 = [($("body").width()/2), ($("body").height())];
+    } else if ("circle" === formationsList[formationCounter]) {
+      var radius = 300;
+      // var q1 = [0, ($("body").height()/2)];
+      // var q2 = [($("body").width()/2), 0];
+      // var q3 = [0, ($("body").height()/2)];
+      // var q4 = [($("body").width()/2), ($("body").height())];
 
-      var heightChange = ($("body").height() / 2) / (numDancers / 4);
-      var widthChange = ($("body").width() / 2) / (numDancers / 4);
+      // var heightChange = ($("body").height() / 2) / (numDancers / 4);
+      // var widthChange = ($("body").width() / 2) / (numDancers / 4);
 
-      var leftValue = q1[0];
-      var topValue = q[1];
+      // var leftValue = q1[0];
+      // var topValue = q[1];
     }
     dancers.forEach(function(dancer, i) {
       var styleSettings = {
@@ -98,30 +106,11 @@ $(document).ready(function() {
       } else if ("rightDiagonal" === formationsList[formationCounter]) {
         leftValue += widthChange;
         topValue -= heightChange;
-      } else if ("diamond" === formationsList[formationCounter]) {
-        var modCalculation = (i % 4);
-        if (modCalculation === 0) {
-          q1[0] += widthChange;
-          q1[1] += heightChange;
-          leftValue += q1[0];
-          topValue -= q1[1];
-        } else if (modCalculation === 1) {
-          q2[0] += widthChange;
-          q2[1] += heightChange;
-          leftValue += q2[0];
-          topValue += q2[1];
-        } else if (modCalculation === 2) {
-          q3[0] += widthChange;
-          q3[1] += heightChange;
-          leftValue += q3[0];
-          topValue -= q3[1];
-        } else if (modCalculation === 3) {
-          q4[0] += widthChange;
-          q4[1] += heightChange;
-          leftValue += q4[0];
-          topValue += q4[1];
-        }
+      } else if ("circle" === formationsList[formationCounter]) {
 
+        leftValue = (($("body").width() / 2) + radius * Math.cos(2 * Math.PI * i / numDancers));
+        topValue = (($("body").height() / 2)  + radius * Math.sin(2 * Math.PI * i / numDancers));
+        
         var styleSettings = {
           transition: 'all 0.5s ease',
           left: leftValue,
@@ -135,13 +124,16 @@ $(document).ready(function() {
 
     formationCounter++;
 
-    if (formationCounter >= formationsList.length){
+    if (formationCounter >= formationsList.length) {
       formationCounter = 0;
     }
   });
 
   var lineUpFunction = function(dancers, option, cb) {
-    dancers.forEach(function(dancer, i){
+    if (dancers.length <= 0) {
+      return;
+    }
+    dancers.forEach(function(dancer, i) {
 
       if (i % 2 === option) {
         var styleSettings = {
@@ -159,6 +151,26 @@ $(document).ready(function() {
     cb();
   };
 
+  var turnOffOnAnimation = function(option) {
+    if (option === "on") {
+      dancers.forEach(function(dancer) {
+        dancer.stopAnimation = false;
+      });
+    } else if (option === "off") {
+      dancers.forEach(function(dancer) {
+        dancer.stopAnimation = true;
+        // var style = dancer.$node.css(['top','left']);
+        // var controlTop = style.top.slice(0,-2);
+        // var controlLeft = style.left.slice(0,-2);
+        // var styleSettings = {
+        //   transition: 'all 0.5s ease',
+        //   left: controlLeft,
+        //   top: controlTop
+        // };
+        // dancer.$node.css(styleSettings);
+      });
+    }
+  };
   $('body').delegate("img", "mouseover", function() {
     var audio = new Audio('./src/Audio/ItsMeMario.mp3');
     audio.play();

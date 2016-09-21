@@ -12,7 +12,9 @@ PhantomDancer.prototype = Object.create(Dancer.prototype);
 PhantomDancer.prototype.step = function() {
   Dancer.prototype.step.apply(this);
   //console.log(this);
-  PhantomEffect(this.$node, this.timeBetweenSteps);
+  if (!this.stopAnimation) {
+    PhantomEffect(this.$node, this.timeBetweenSteps);
+  }
 };
 
 var PhantomEffect = function(dancer, timeBetweenSteps) {
